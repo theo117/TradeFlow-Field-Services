@@ -31,15 +31,21 @@ let whatsappSettings = {
 };
 
 const supabaseConfig = window.TRADEFLOW_SUPABASE || {};
+const normalizedSupabaseUrl = normalizeSupabaseUrl(supabaseConfig.url);
 const supabaseClient =
-  window.supabase && supabaseConfig.url && supabaseConfig.anonKey
-    ? window.supabase.createClient(supabaseConfig.url, supabaseConfig.anonKey)
+  window.supabase && normalizedSupabaseUrl && supabaseConfig.anonKey
+    ? window.supabase.createClient(normalizedSupabaseUrl, supabaseConfig.anonKey)
     : null;
 
 const isSupabaseReady = () => Boolean(supabaseClient);
 
 function setDbStatus(status) {
   state.dbStatus = status;
+}
+
+function normalizeSupabaseUrl(url) {
+  if (!url) return "";
+  return url.trim().replace(/\/rest\/v1\/?$/i, "").replace(/\/+$/, "");
 }
 
 function mapCompany(row) {
