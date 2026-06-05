@@ -1,0 +1,2 @@
+-- No seed records.
+-- Add real company, user, customer, job, quote, invoice, and notification data here when ready.
