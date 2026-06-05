@@ -1,7 +1,7 @@
 const state = {
   view: "dashboard",
   role: "Admin",
-  dark: localStorage.getItem("tradeflow-theme") === "dark",
+  dark: localStorage.getItem("tradeflow-theme") !== "light",
   customerSearch: "",
   jobStatus: "All",
   selectedTechJob: null,
